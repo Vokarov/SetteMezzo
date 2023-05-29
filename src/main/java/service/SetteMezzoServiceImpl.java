@@ -172,7 +172,9 @@ public class SetteMezzoServiceImpl implements SetteMezzoService {
             cardNotShown=card;
         }
 
-
+        if (countHand(handPlayer)==7.5 && countHand(handBanc)!=7.5){
+            return false;
+        }
         double valueShown = countHand(handPlayer) - cardNotShown;
         if (countHand(handBanc)==7.5){
             return true;
