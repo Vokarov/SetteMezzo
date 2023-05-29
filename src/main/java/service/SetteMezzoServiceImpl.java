@@ -171,11 +171,12 @@ public class SetteMezzoServiceImpl implements SetteMezzoService {
         }else{
             cardNotShown=card;
         }
+        double valueShown = countHand(handPlayer) - cardNotShown;
 
         if (countHand(handPlayer)==7.5 && countHand(handBanc)!=7.5){
             return false;
         }
-        double valueShown = countHand(handPlayer) - cardNotShown;
+
         if (countHand(handBanc)==7.5){
             return true;
         }
@@ -192,9 +193,9 @@ public class SetteMezzoServiceImpl implements SetteMezzoService {
 
 
 
-        if (valueShown >= countHand(handBanc)) { //Se il player ha sul tavolo un valore maggiore uguale e' vincente -> PESCA
+        if (valueShown >= countHand(handBanc)) { //Se il player ha sul tavolo un valore maggiore uguale non e' vincente -> PESCA
             return false;
-        } else if (valueShown > SOGLIA && countHand(handBanc)<6.5) { //Se il player ha sul tavolo un valore oltre la soglia ed il banco non ha 7-> PESCA
+        } else if (valueShown > SOGLIA && countHand(handBanc)<6.5) { //Se il player ha sul tavolo un valore oltre la soglia ed il banco non ha 6.5-> PESCA
 
             return false;
         }else {
