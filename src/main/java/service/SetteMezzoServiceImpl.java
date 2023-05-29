@@ -164,29 +164,42 @@ public class SetteMezzoServiceImpl implements SetteMezzoService {
     }
 
     public boolean willBancWinner(){
-        int card=getHandPlayer().get(0).getNumero();
-        double cardNotShown=0;
-        if (card== 10 || card == 9 || card== 8) {
-            cardNotShown= 0.5;
-        }else{
-            cardNotShown=card;
-        }
-        double valueShown = countHand(handPlayer) - cardNotShown;
+        double point=0;
+        Card matta = new Card(10, Semi.denari);
+        boolean hasMatta = false;
+        double valore=0;
 
-        if (countHand(handPlayer)==7.5 && countHand(handBanc)!=7.5){
-            return false;
+        for (int i = 1; i <getHandPlayer().size() ; i++) {
+            int card=getHandPlayer().get(i).getNumero();
+
+            if (card== 10 || card == 9 || card== 8) {
+                valore = 0.5 ;
+            }else{
+                valore=card;
+            }
+            point += valore;
         }
+        if (handPlayer.contains(matta)) {
+            point=7; // se fosse 7.5 lo direbbe il count.
+        }
+        double valueShown = point;
 
         if (countHand(handBanc)==7.5){
             return true;
         }
+        if (countHand(handPlayer)==7.5 && countHand(handBanc)!=7.5){
+            return false;
+        }
+
+
 
 
         if (valueShown == 0){ // Se sul tavolo non ci sono carte scoperte pesco solo ho un punteggio oltre una soglia
             if (countHand(handBanc)>SOGLIA){
-
+                System.out.println("valueShown == 0 \n countHand(handBanc)>SOGLIA");
                 return true;
             }else {
+                System.out.println("valueShown == 0 \n *NO* countHand(handBanc)>SOGLIA ");
                 return false;
             }
         }
@@ -194,11 +207,18 @@ public class SetteMezzoServiceImpl implements SetteMezzoService {
 
 
         if (valueShown >= countHand(handBanc)) { //Se il player ha sul tavolo un valore maggiore uguale non e' vincente -> PESCA
+            System.out.println("valueShown >= countHand(handBanc");
             return false;
         } else if (valueShown > SOGLIA && countHand(handBanc)<6.5) { //Se il player ha sul tavolo un valore oltre la soglia ed il banco non ha 6.5-> PESCA
+            System.out.println("*NO* valueShown >= countHand(handBanc) \n else if (valueShown > SOGLIA && countHand(handBanc)<6.5)");
+
+            return false;
+        }else if(valueShown < SOGLIA && countHand(handBanc)<5){
+            System.out.println("*NO* valueShown >= countHand(handBanc) \n *NO* (valueShown > SOGLIA && countHand(handBanc)<6.5) \n else if(valueShown < SOGLIA && countHand(handBanc)<5)");
 
             return false;
         }else {
+            System.out.println("*NO* valueShown >= countHand(handBanc) \n *NO* (valueShown > SOGLIA && countHand(handBanc)<6.5) \n *NO* (valueShown < SOGLIA && countHand(handBanc)<5) ");
             return true; //Se il player ha sul tavolo un valore minore la soglia -> Il banco potrebbe vincere
         }
     }
