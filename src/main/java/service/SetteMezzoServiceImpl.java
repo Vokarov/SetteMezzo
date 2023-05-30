@@ -180,14 +180,17 @@ public class SetteMezzoServiceImpl implements SetteMezzoService {
             point += valore;
         }
         if (handPlayer.contains(matta)) {
-            point=7; // se fosse 7.5 lo direbbe il count.
+            point=7; // se fosse 7.5 lo direbbe il count inserito dopo.
         }
         double valueShown = point;
 
         if (countHand(handBanc)==7.5){
+            System.out.println("countHand(handBanc)==7.5");
             return true;
         }
         if (countHand(handPlayer)==7.5 && countHand(handBanc)!=7.5){
+            System.out.println("countHand(handPlayer)==7.5 && countHand(handBanc)!=7.5");
+
             return false;
         }
 
