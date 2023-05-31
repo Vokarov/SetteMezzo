@@ -6,7 +6,9 @@ import service.DeckService;
 import service.SetteMezzoService;
 import service.SetteMezzoServiceImpl;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class SetteMezzoApp implements SetteMezzoAppInterface {
@@ -17,6 +19,8 @@ public class SetteMezzoApp implements SetteMezzoAppInterface {
     }
 
     public void game() {
+        //    private List<Integer> vincitori= new ArrayList<>();
+
         int numberOFPlayer = playerNumber();
 
         boolean isPalazzo = false;
@@ -80,27 +84,23 @@ public class SetteMezzoApp implements SetteMezzoAppInterface {
             if (!isPalazzo) {
                 if (setteMezzo.countHand(setteMezzo.getHandPlayer()) > setteMezzo.countHand(setteMezzo.getHandBanc())) {
                     System.out.println("Hai vinto");
+//                    vincitori.add(i+1);
+
                 } else {
                     System.out.println("Hai perso");
                 }
             }
-
-            System.out.println("=======================================\n");
-
-
             isPalazzo = false;
             hasBancAdd = false;
             setteMezzo.getHandPlayer().clear();
             setteMezzo.getHandBanc().clear();
-            System.out.println("=======================================");
-            if (setteMezzo.getDeck().size() < setteMezzo.getNumberCards() / 2) {
-                setteMezzo.startGame();
-            } else {
-                setteMezzo.giveCard(setteMezzo.getHandPlayer());
-                setteMezzo.giveCard(setteMezzo.getHandBanc());
-            }
-        }
+            if(i+1<numberOFPlayer){prossimoPlayer();};
 
+        }
+//        System.out.println("I vincitori:");
+//        for (int i = 0; i < vincitori.size(); i++) {
+//            System.out.println("Player "+vincitori.get(i).toString());
+//        }
 
     }
 
@@ -109,24 +109,39 @@ public class SetteMezzoApp implements SetteMezzoAppInterface {
         boolean isRispostaCorrect = true;
         int numberOfPlayer = 1;
         Scanner scanner = new Scanner(System.in);
+        int risposta = 0;
         do {
-            int risposta = 0;
+
             try {
                 isRispostaCorrect = true;
                 System.out.println("Quanti player siete contro il banco?");
                 risposta = scanner.nextInt();
-            } catch (InputMismatchException e) {
+            } catch (java.util.InputMismatchException e) {
                 System.err.println(e);
                 isRispostaCorrect = false;
+                scanner.next();
             }
-            return risposta;
-        } while (isRispostaCorrect == false);
 
+        } while (isRispostaCorrect == false);
+        return risposta;
 
     }
 
     @Override
     public void prossimoPlayer() {
+    System.out.println("PROSSIMO PLAYER!");
+        System.out.println("=======================================\n");
 
+
+
+        System.out.println("=======================================");
+        if (setteMezzo.getDeck().size() < setteMezzo.getNumberCards() / 2) {
+            setteMezzo.startGame();
+        } else {
+            setteMezzo.giveCard(setteMezzo.getHandPlayer());
+            setteMezzo.giveCard(setteMezzo.getHandBanc());
+        }
     }
+
+
 }
