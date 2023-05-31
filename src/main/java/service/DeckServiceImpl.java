@@ -7,9 +7,16 @@ import java.util.*;
 
 public class DeckServiceImpl implements DeckService{
     private  static List<Card> cards = new LinkedList<>();
-    private static final int nCarte=40;
-    private static final int nSeme=4;
+    private  final int nCarte=40;
+    private final int nSeme=4;
 
+    public int getnCarte() {
+        return nCarte;
+    }
+
+    public int getnSeme() {
+        return nSeme;
+    }
 
     public List<Card> deckGenerator() {
         for (int i = 1; i <= nCarte/nSeme; i++) {

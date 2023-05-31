@@ -84,7 +84,7 @@ public class SetteMezzoServiceImplPerdente implements SetteMezzoService {
             point = 7;
         } else if (hasMatta && point != (int) point && point!=0.5) {
             point = 7.5;
-            System.err.println("Sette e Mezzo");
+            System.out.println("Sette e Mezzo");
         }
         //        System.out.println( "Hai "+point);
         return point;
@@ -114,7 +114,7 @@ public class SetteMezzoServiceImplPerdente implements SetteMezzoService {
                 }
 
             } catch (InputMismatchException e) {
-                System.err.println(e);
+                System.out.println(e);
                 isRispostaCorrect = false;
             }
         } while (isRispostaCorrect == false);
@@ -145,7 +145,7 @@ public class SetteMezzoServiceImplPerdente implements SetteMezzoService {
                     doWantContinue = false;
                 }
             } catch (InputMismatchException e) {
-                System.err.println(e);
+                System.out.println(e);
                 isRispostaCorrect = false;
             }
         } while (isRispostaCorrect == false);
@@ -184,5 +184,11 @@ public class SetteMezzoServiceImplPerdente implements SetteMezzoService {
         return deck;
     }
 
+    public int getNumberCards(){
+        return deckService.getnCarte();
+    }
 
+    public int getNumberSemi(){
+        return deckService.getnSeme();
+    }
 }

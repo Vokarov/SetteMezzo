@@ -31,4 +31,7 @@ public interface SetteMezzoService {
     List<Card> getHandPlayer();
 
     LinkedList<Card> getDeck();
+    int getNumberCards();
+    int getNumberSemi();
+
 }

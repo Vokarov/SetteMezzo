@@ -8,5 +8,6 @@ public interface DeckService {
 
 
     List<Card> cardsShuffle();
-
+    int getnCarte();
+    int getnSeme();
 }
