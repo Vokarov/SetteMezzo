@@ -20,7 +20,7 @@ public enum Semi {
         this.valore = valore;
     }
 
-    public static String getSeme(int valore){
+    public static String getSemeName(int valore){
         for (Semi seme : Semi.values()) {
             if(seme.getValore()== valore){
                 return seme.name();
@@ -28,6 +28,15 @@ public enum Semi {
         }
         return null;
     }
+    public static Semi getSeme(int valore){
+        for (Semi seme : Semi.values()) {
+            if(seme.getValore()== valore){
+                return seme;
+            }
+        }
+        return null;
+    }
+
 
 
 }

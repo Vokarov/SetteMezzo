@@ -20,10 +20,10 @@ public class DeckServiceImpl implements DeckService{
 
     public List<Card> deckGenerator() {
         for (int i = 1; i <= nCarte/nSeme; i++) {
-            cards.add(new Card(i, Semi.bastoni));
-            cards.add(new Card(i, Semi.coppe));
-            cards.add(new Card(i, Semi.denari));
-            cards.add(new Card(i, Semi.spade));
+            cards.add(new Card(i, Semi.getSeme(1)));
+            cards.add(new Card(i, Semi.getSeme(2)));
+            cards.add(new Card(i, Semi.getSeme(3)));
+            cards.add(new Card(i, Semi.getSeme(4)));
         }
         System.out.println("Mazzo creato");
         return cards;
