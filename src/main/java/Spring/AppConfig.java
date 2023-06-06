@@ -3,14 +3,15 @@ package Spring;
 import game.SetteMezzoApp;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import service.*;
-
+@PropertySource("config.properties")
 @Configuration
 public class AppConfig {
 
     @Bean
     DeckService deckService(){
-        return new DeckServiceImpl();
+        return new DeckServiceNapoletaneImpl();
     }
     @Bean
     SetteMezzoService setteMezzoService(DeckService deckService){

@@ -1,14 +1,8 @@
 package game;
 
 
-import modelli.Card;
-import service.DeckService;
 import service.SetteMezzoService;
-import service.SetteMezzoServiceImpl;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 public class SetteMezzoApp implements SetteMezzoAppInterface {

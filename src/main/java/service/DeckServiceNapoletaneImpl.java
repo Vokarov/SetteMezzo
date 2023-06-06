@@ -2,28 +2,21 @@ package service;
 
 import enums.Semi;
 import modelli.Card;
+import modelli.CardNapoletane;
 
 import java.util.*;
 
-public class DeckServiceImpl implements DeckService{
+
+public class DeckServiceNapoletaneImpl implements DeckService {
     private  static List<Card> cards = new LinkedList<>();
-    private  final int nCarte=40;
-    private final int nSeme=4;
-
-    public int getnCarte() {
-        return nCarte;
-    }
-
-    public int getnSeme() {
-        return nSeme;
-    }
-
+    private final int nCarte=CardNapoletane.getnCarte();
+    private final int nSeme=CardNapoletane.getnSeme();
     public List<Card> deckGenerator() {
         for (int i = 1; i <= nCarte/nSeme; i++) {
-            cards.add(new Card(i, Semi.getSeme(1)));
-            cards.add(new Card(i, Semi.getSeme(2)));
-            cards.add(new Card(i, Semi.getSeme(3)));
-            cards.add(new Card(i, Semi.getSeme(4)));
+            cards.add(new CardNapoletane(i, Semi.getSeme(1)));
+            cards.add(new CardNapoletane(i, Semi.getSeme(2)));
+            cards.add(new CardNapoletane(i, Semi.getSeme(3)));
+            cards.add(new CardNapoletane(i, Semi.getSeme(4)));
         }
         System.out.println("Mazzo creato");
         return cards;
@@ -48,6 +41,16 @@ public class DeckServiceImpl implements DeckService{
         System.out.println("Mazzo mescolato");
 
         return new LinkedList<>(Arrays.asList(cardsTemp));
+    }
+
+    @Override
+    public int getnCarte() {
+        return CardNapoletane.getnCarte();
+    }
+
+    @Override
+    public int getnSeme() {
+        return CardNapoletane.getnSeme();
     }
 
 
